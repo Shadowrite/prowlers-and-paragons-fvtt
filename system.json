@@ -7,10 +7,10 @@
       "name": "Clay Sheppard"
     }
   ],
-  "url": "https://github.com/csheepy/prowlers-and-paragons-fvtt",
+  "url": "https://github.com/shadowrite/prowlers-and-paragons-fvtt",
   "license": "LICENSE.txt",
-  "readme": "https://github.com/csheepy/prowlers-and-paragons-fvtt/blob/main/README.md",
-  "bugs": "https://github.com/csheepy/prowlers-and-paragons-fvtt/issues",
+  "readme": "https://github.com/shadowrite/prowlers-and-paragons-fvtt/blob/main/README.md",
+  "bugs": "https://github.com/shadowrite/prowlers-and-paragons-fvtt/issues",
   "changelog": "CHANGELOG.md",
   "media": [
     {
@@ -19,10 +19,10 @@
       "thumbnail": "systems/prowlers-and-paragons/assets/anvil-impact.png"
     }
   ],
-  "version": "2.0.1",
+  "version": "F.2.0.2",
   "compatibility": {
     "minimum": 13,
-    "verified": "14.364"
+    "verified": "14.368"
   },
   "esmodules": ["module/prowlers-and-paragons.mjs"],
   "styles": ["css/prowlers-and-paragons.css"],
@@ -45,8 +45,8 @@
   "packs": [],
   "packFolders": [],
   "socket": true,
-  "manifest": "https://github.com/csheepy/prowlers-and-paragons-fvtt/releases/latest/download/system.json",
-  "download": "https://github.com/csheepy/prowlers-and-paragons-fvtt/releases/download/2.0.1/prowlers-and-paragons-fvtt.zip",
+  "manifest": "https://github.com/shadowrite/prowlers-and-paragons-fvtt/releases/latest/download/system.json",
+  "download": "https://github.com/shadowrite/prowlers-and-paragons-fvtt/releases/download/F.2.0.2/prowlers-and-paragons-fvtt.zip",
   "background": "systems/prowlers-and-paragons/assets/anvil-impact.png",
   "gridDistance": 5,
   "gridUnits": "ft",
