@@ -19,7 +19,7 @@
       "thumbnail": "systems/prowlers-and-paragons/assets/anvil-impact.png"
     }
   ],
-  "version": "F.2.0.2",
+  "version": "F.2.0.2.a",
   "compatibility": {
     "minimum": 13,
     "verified": "14.368"
@@ -46,7 +46,7 @@
   "packFolders": [],
   "socket": true,
   "manifest": "https://github.com/shadowrite/prowlers-and-paragons-fvtt/releases/latest/download/system.json",
-  "download": "https://github.com/shadowrite/prowlers-and-paragons-fvtt/releases/download/F.2.0.2/prowlers-and-paragons-fvtt.zip",
+  "download": "https://github.com/shadowrite/prowlers-and-paragons-fvtt/releases/download/F.2.0.2.a/prowlers-and-paragons-fvtt.zip",
   "background": "systems/prowlers-and-paragons/assets/anvil-impact.png",
   "primaryTokenAttribute": "health",
   "secondaryTokenAttribute": "resolve",
