@@ -102,6 +102,23 @@ export class ProwlersParagonsItem extends Item {
     return ArmorRoll.rollDialog(armorOptions);
   }
 
+  // Just something to abstract getting the speaker data away from ChatMessage.getSpeaker() in cases we want to intercept it
+  resolveSpeaker(actorData) {
+    let speakerData = ChatMessage.getSpeaker(actorData);
+    if(actorData.actor ? (actorData.actor.type == "character") : false)
+    {
+      switch(actorData.actor.system.hideActorDetails)
+      {
+        case 'nameonly':
+        case 'all':
+          speakerData.alias = "???";
+          break;
+        default:
+      }
+    }
+    return speakerData;
+  }
+
   /**
    * Handle clickable rolls.
    * @param {Event} event   The originating click event
@@ -111,9 +128,9 @@ export class ProwlersParagonsItem extends Item {
     const item = this;
 
     // Initialize chat data.
-    const speaker = ChatMessage.getSpeaker({ actor: this.actor });
+    const speaker = this.resolveSpeaker({ actor: this.actor });
     const rollMode = game.settings.get('core', 'rollMode');
-    const label = `(${item.type}) ${item.name}`;
+    let label = `(${item.type}) ${item.name}`;
 
     options.trait = `powers.${item.id}`;
 
@@ -132,7 +149,7 @@ export class ProwlersParagonsItem extends Item {
         return ChatMessage.create({
           speaker: speaker,
           rollMode: rollMode,
-          flavor: label,
+          flavor: label + `${(item.system.shortDescription != "" && item.system.shortDescription != item.name) ? ` [${item.system.shortDescription}]` : ""}`,
           content: message ?? '',
         });
       }

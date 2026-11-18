@@ -1,14 +1,17 @@
 <div>
     <h3>Options</h3>
-    <input type='checkbox' name='system.healthOverride' {{checked system.healthOverride}}>
-        Override Health (stops max health auto-updating)
-    </input>
+    <label class='resource-label'>Override Health (stops max health auto-updating)</label>
+    <input type='checkbox' name='system.healthOverride' {{checked system.healthOverride}} />
     <br>
-    <input type='checkbox' name='system.halveHealth' {{checked system.halveHealth}}>
-        Halve Health (for Foes)
-    </input>
+    <label class='resource-label'>Halve Health (for Foes)</label>
+    <input type='checkbox' name='system.halveHealth' {{checked system.halveHealth}} />
     <br>
-    <input type='checkbox' name='system.edgeOverride' {{checked system.edgeOverride}}>
-        Override Edge (stops edge auto-updating)
-    </input>
+    <label class='resource-label'>Override Edge (stops edge auto-updating)</label>
+    <input type='checkbox' name='system.edgeOverride' {{checked system.edgeOverride}} />
+    <br>
+    <label class='resource-label'>Hide Character Details in Rolls</label>
+    <select name='system.hideActorDetails'>
+        {{selectOptions hide_actor_details_choices selected=system.hideActorDetails}}
+    </select>
+    <br>
 </div>

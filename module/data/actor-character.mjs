@@ -31,7 +31,7 @@ export default class ProwlersParagonsCharacter extends ProwlersParagonsActorBase
       return obj;
     }, {}));
 
-    schema.package_applied = new fields.StringField({ required: true, blank: true })
+    schema.package_applied = new fields.StringField({ required: true, blank: true });
 
     schema.resolve = new fields.SchemaField({
       value: new fields.NumberField({ ...requiredInteger, initial: 0, min: 0 }),
@@ -41,7 +41,7 @@ export default class ProwlersParagonsCharacter extends ProwlersParagonsActorBase
 
     schema.gear = new fields.SchemaField({
       misc: new fields.StringField({ required: false, blank: true })
-    })
+    });
 
     schema.biography = new fields.SchemaField({
       misc: new fields.StringField({ required: true, blank: true }),
@@ -52,14 +52,16 @@ export default class ProwlersParagonsCharacter extends ProwlersParagonsActorBase
       connections: new fields.StringField({ required: true, blank: true }),
       details: new fields.StringField({ required: true, blank: true }),
       origin: new fields.StringField({ required: true, blank: true })
-    })
+    });
 
-    schema.healthOverride = new fields.BooleanField({initial: false}) // special shenanigans for villains or whatever
-    schema.halveHealth = new fields.BooleanField({initial: false}) // for foes
+    schema.healthOverride = new fields.BooleanField({initial: false}); // special shenanigans for villains or whatever
+    schema.halveHealth = new fields.BooleanField({initial: false}); // for foes
 
-    schema.edgeOverride = new fields.BooleanField({initial: false})
+    schema.edgeOverride = new fields.BooleanField({initial: false});
 
-    schema.earnedHeroPoints = new fields.NumberField({initial: 0, min: 0})
+    schema.earnedHeroPoints = new fields.NumberField({initial: 0, min: 0});
+
+    schema.hideActorDetails = new fields.StringField({ choices: ['none', 'nameonly', 'all'] }); // Hide actor details in rolls
 
     return schema;
   }

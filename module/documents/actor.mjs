@@ -9,6 +9,24 @@ import { getActorsFromTargetedTokens } from '../helpers/tokens.mjs'
 import { setupOpposedRoll } from '../helpers/rolls.mjs';
 
 export class ProwlersParagonsActor extends foundry.documents.Actor {
+
+  // Just something to abstract getting the speaker data away from ChatMessage.getSpeaker() in cases we want to intercept it
+  resolveSpeaker(actorData) {
+    let speakerData = ChatMessage.getSpeaker(actorData);
+    if(actorData.actor ? (actorData.actor.type == "character") : false)
+    {
+      switch(actorData.actor.system.hideActorDetails)
+      {
+        case 'nameonly':
+        case 'all':
+          speakerData.alias = "???";
+          break;
+        default:
+      }
+    }
+    return speakerData;
+  }
+
   /** @override */
   prepareData() {
     // Prepare data for the actor. Calling the super version of this executes
@@ -423,7 +441,7 @@ export class ProwlersParagonsActor extends foundry.documents.Actor {
 
     options.num_dice = val;
     options.rollMode = game.settings.get('core', 'rollMode');
-    options.speaker = ChatMessage.getSpeaker({ actor: this });
+    options.speaker = this.resolveSpeaker({ actor: this });
     options.trait = trait;
     if(modifier) options.initialRollModifier = modifier;
 
@@ -442,7 +460,7 @@ export class ProwlersParagonsActor extends foundry.documents.Actor {
 
     options.num_dice = this.system.threat;
     options.count = this.system.count
-    options.speaker = ChatMessage.getSpeaker({ actor: this });
+    options.speaker = this.resolveSpeaker({ actor: this });
     options.type = `Threat ${this.system.threat} (group of ${this.system.count})`;
     options.rollMode = game.settings.get('core', 'rollMode');
     options.flavor = game.i18n.localize('PROWLERS_AND_PARAGONS.Threat');

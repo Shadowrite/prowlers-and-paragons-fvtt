@@ -70,6 +70,7 @@ export class ProwlersParagonsActorSheet extends foundry.appv1.sheets.ActorSheet 
       return null;
     });
 
+
     // Adding a pointer to CONFIG.PROWLERS_AND_PARAGONS
     context.config = CONFIG.PROWLERS_AND_PARAGONS;
 
@@ -110,6 +111,13 @@ export class ProwlersParagonsActorSheet extends foundry.appv1.sheets.ActorSheet 
       // as well as any items
       this.actor.allApplicableEffects()
     );
+
+    // Hide Actor Details Context
+    context.hide_actor_details_choices = {
+      none: 'None',
+      nameonly: 'Name Only',
+      all: 'All'
+    }
 
     return context;
   }
@@ -293,7 +301,7 @@ export class ProwlersParagonsActorSheet extends foundry.appv1.sheets.ActorSheet 
     if (actor.isOwner) {
       let handler = (ev) => this._onDragStart(ev);
       html.find('li.item').each((i, li) => {
-        if (li.classList.contains('inventory-header')) return;
+        if (li.classList.contains('items-header')) return;
         li.setAttribute('draggable', true);
         li.addEventListener('dragstart', handler, false);
       });
