@@ -345,6 +345,39 @@ export class ProwlersParagonsActorSheet extends foundry.appv1.sheets.ActorSheet 
       getActorName: (html) => html.find('input[name="name"]').val() || 'A hero',
     });
 
+    // Handle editing item values in actor sheet
+    html.on('change', 'input[name^="§items."]', async (ev) => {
+      const input = $(ev.currentTarget);
+      let val = input.val();
+      switch(input[0].dataset.dtype)
+      {
+        case 'Number':
+          val = parseInt(val);
+          break;
+        case 'String':
+        default:
+      }
+      if(val == NaN || val == null || val == undefined)
+      {
+        return;
+      }
+      let full_str = input.attr('name').split('.');
+
+      const item_id = full_str[1];
+      const item = actor.items.get(item_id);
+      if(!item)
+      {
+        return;
+      }
+      full_str.splice(0,2);
+
+      const itemValue = full_str.reduce((acc, key) => acc && acc[key], item);
+
+      if(itemValue != null && itemValue != val)
+      {
+        item.update({[full_str.join('.')] : val});
+      }
+    });
 
     html.on('blur', 'input[name^="system.abilities."], input[name^="system.talents."]', async (ev) => {
       const input = $(ev.currentTarget);

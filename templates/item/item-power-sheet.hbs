@@ -13,6 +13,13 @@
           value='{{item.name}}'
           placeholder='Name'
         /></h1>
+      <h4 class="flex-group-center">
+          <span style='text-transform: uppercase;'>{{system.rank_type}}</span>
+          |
+          Cost: <strong>{{system.cost}}</strong>{{#unless (eq system.rank_type 'default')}}/rank
+            <br><strong>{{system.rank}}</strong> purchased
+          {{/unless}}
+      </h4>
     </div>
   </header>
 

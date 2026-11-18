@@ -19,7 +19,7 @@
            <div class="resource-content flexrow flex-center flex-between">
             <input type="text" name="system.health.value" value="{{system.health.value}}" data-dtype="Number"/>
             <span style="vertical-align: -webkit-baseline-middle;"><i style="vertical-align: inherit;" class="fas fa-lg fa-slash-forward"></i></span>
-            <input type="text" name="system.health.max" value="{{system.health.max}}" data-dtype="Number"/>
+            <input type="text" name="system.health.max" value="{{system.health.max}}" data-dtype="Number" {{#unless system.healthOverride}}readonly="readonly"{{/unless}}/>
            </div>
           </div>
           <h4 class="spent-hero-points">{{localize "PROWLERS_AND_PARAGONS.DerivedCharacteristics.SpentHeroPoints"}}: {{actor.spentHeroPoints}}</h4>
@@ -32,7 +32,7 @@
         <div class="resource flex-group-center flex-column">
           <div class="resource-content flex-column flex-center flex-between">
             <label for="system.edge.value" class="resource-label">{{localize "PROWLERS_AND_PARAGONS.DerivedCharacteristics.Edge"}}</label>
-            <input type="text" name="system.edge.value" value="{{system.edge.value}}" data-dtype="Number"/>
+            <input type="text" name="system.edge.value" value="{{system.edge.value}}" data-dtype="Number" {{#unless system.edgeOverride}}readonly="readonly"{{/unless}}/>
           </div>
           <button type="button" id="temporary-buffs-button" class="temporary-buffs-btn" style="margin-top: auto;">{{temporaryButtonText}}</button>
         </div>

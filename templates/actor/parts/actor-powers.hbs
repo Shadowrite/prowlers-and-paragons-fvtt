@@ -1,6 +1,7 @@
 <ol class='items-list'>
     <li class='item flexrow items-header'>
     <div class='item-name'>{{localize 'Name'}}</div>
+    <div class='item-formula'></div><!-- Placeholder for the short description -->
     <div class='item-formula'>{{localize 'Purchased Rank'}}</div>
     <div class='item-formula'>{{localize 'Total Rank'}}</div>
     <div class='item-controls'>
@@ -25,9 +26,20 @@
                 height='24'
               /></a>
           </div>
-          <h4>{{item.displayName}}</h4>
+          <h4>
+              <input type="text" name="§items.{{item._id}}.name" value="{{item.name}}" data-dtype="String"/>
+          </h4>
         </div>
-        <div class='item-formula item-prop'>{{ifThen (isDefaultPower item) '-' item.system.rank }}</div>
+        <div class='item-formula flexrow'>
+            <small class="resource-label flexlarge align-center">({{item.system.shortDescription}})</small>
+        </div>
+        <div class='item-formula item-prop'>
+          {{#if (isDefaultPower item)}}
+            -
+          {{else}}
+            <input type="text" name="§items.{{item._id}}.system.rank" value="{{item.system.rank}}" data-dtype="Number"/>
+          {{/if}}
+        </div>
         <div class='item-formula item-prop no-left-border'>{{ifThen (isDefaultPower item) '-' (getDerivedPowerRank item._id)}}</div>
         <div class='item-controls'>
           <a
