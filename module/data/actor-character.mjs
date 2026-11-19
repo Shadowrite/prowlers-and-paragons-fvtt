@@ -33,11 +33,15 @@ export default class ProwlersParagonsCharacter extends ProwlersParagonsActorBase
 
     schema.package_applied = new fields.StringField({ required: true, blank: true });
 
+    schema.startingResolveOverride = new fields.BooleanField({initial: false});
     schema.resolve = new fields.SchemaField({
       value: new fields.NumberField({ ...requiredInteger, initial: 0, min: 0 }),
       starting: new fields.NumberField({ ...requiredInteger, initial: 0, min: 0 }),
       max: new fields.NumberField({ ...requiredInteger, initial: 0, min: 0 })
     });
+
+    // Enter resolve from sources like the relationship flaw and Determination here
+    schema.resolveFromOtherSources = new fields.NumberField({ ...requiredInteger, initial: 0, min: 0 });
 
     schema.gear = new fields.SchemaField({
       misc: new fields.StringField({ required: false, blank: true })
@@ -60,6 +64,11 @@ export default class ProwlersParagonsCharacter extends ProwlersParagonsActorBase
     schema.edgeOverride = new fields.BooleanField({initial: false});
 
     schema.earnedHeroPoints = new fields.NumberField({initial: 0, min: 0});
+    schema.heroPointsOverride = new fields.BooleanField({initial: false});
+    schema.baseHeroPoints = new fields.NumberField({ ...requiredInteger, initial: game.settings.get("prowlers-and-paragons", "heroPointBudget"), min: 0 });
+
+    schema.traitCapOverride = new fields.BooleanField({initial: false});
+    schema.traitCap = new fields.NumberField({ ...requiredInteger, initial: game.settings.get("prowlers-and-paragons", "defaultTraitCap"), min: 1 });
 
     schema.hideActorDetails = new fields.StringField({ choices: ['none', 'nameonly', 'all'] }); // Hide actor details in rolls
 
@@ -83,6 +92,7 @@ export default class ProwlersParagonsCharacter extends ProwlersParagonsActorBase
       this.health.max = newMaxHealth
     }
 
+    // TODO : This is very shoddy and harcoded shit like this SUCKS. Replace this
     // edge
     if (!this.edgeOverride) { 
       //danger sense substitutes for perception

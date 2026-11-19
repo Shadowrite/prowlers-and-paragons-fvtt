@@ -14,4 +14,28 @@
         {{selectOptions hide_actor_details_choices selected=system.hideActorDetails}}
     </select>
     <br>
+    <label class='resource-label'>Override Starting Resolve (stops starting resolve auto-updating)</label>
+    <input type='checkbox' name='system.startingResolveOverride' {{checked system.startingResolveOverride}} />
+    <br>
+    {{#unless system.startingResolveOverride}}
+        <label class='resource-label'>⤷Additional Resolve (From Flaws and the Determination Power)</label>
+        <input type="text" name="system.resolveFromOtherSources" value="{{system.resolveFromOtherSources}}" data-dtype="Number" />
+    {{/unless}}
+    <br>
+    <label class='resource-label'>Override Hero Points(default is {{startingHeroPoints}})</label>
+    <input type='checkbox' name='system.heroPointsOverride' {{checked system.heroPointsOverride}} />
+    <br>
+    {{#if system.heroPointsOverride}}
+        <label class='resource-label'>⤷New Base Hero Points</label>
+        <input type="text" name="system.baseHeroPoints" value="{{system.baseHeroPoints}}" data-dtype="Number" />
+    {{/if}}
+    <br>
+    <label class='resource-label'>Override Trait Cap(default is {{defaultTraitCap}})</label>
+    <input type='checkbox' name='system.traitCapOverride' {{checked system.traitCapOverride}} />
+    <br>
+    {{#if system.traitCapOverride}}
+        <label class='resource-label'>⤷New Trait Cap</label>
+        <input type="text" name="system.traitCap" value="{{system.traitCap}}" data-dtype="Number" />
+    {{/if}}
+    <br>
 </div>

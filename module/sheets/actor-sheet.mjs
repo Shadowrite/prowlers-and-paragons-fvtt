@@ -49,8 +49,12 @@ export class ProwlersParagonsActorSheet extends foundry.appv1.sheets.ActorSheet 
     context.system = actorData.system;
     context.flags = actorData.flags;
     context.rollDifficulties = CONFIG.PROWLERS_AND_PARAGONS.roll_difficulties
-    context.startingHeroPoints = game.settings.get("prowlers-and-paragons", "heroPointBudget")
-    context.totalHeroPointBudget = context.system.earnedHeroPoints + context.startingHeroPoints
+    context.startingHeroPoints = game.settings.get("prowlers-and-paragons", "heroPointBudget");
+    context.totalHeroPointBudget = context.system.earnedHeroPoints + ((context.system.heroPointsOverride) ? context.system.baseHeroPoints : context.startingHeroPoints);
+    context.defaultTraitCap = game.settings.get("prowlers-and-paragons", "defaultTraitCap");;
+    context.actualTraitCap = (context.system.traitCapOverride) ? context.system.traitCap : context.defaultTraitCap;
+    context.derivedResolve = actorData.derivedResolve;
+    context.actualResolve = (context.system.startingResolveOverride) ? context.system.resolve.starting : context.derivedResolve;
     context.temporaryMode = this.actor.getFlag('prowlers-and-paragons', 'temporaryMode')
     context.temporaryButtonText = this.actor.getFlag('prowlers-and-paragons', 'temporaryMode') ? 'Return to Normal' : 'Enter Temporary Buffs Mode'
     context.temporaryModeTraits = this.actor.getFlag('prowlers-and-paragons', 'temporaryModeTraits')
@@ -249,7 +253,7 @@ export class ProwlersParagonsActorSheet extends foundry.appv1.sheets.ActorSheet 
     if (!this.isEditable) return;
 
     html.on('click', '.reset-resolve', () => {
-      actor.update({ 'system.resolve.value': actor.system.resolve.starting })
+      actor.update({ 'system.resolve.value': (actor.system.startingResolveOverride) ? actor.system.resolve.starting : actor.derivedResolve })
     });
 
     // Add Inventory Item

@@ -115,6 +115,33 @@ export class ProwlersParagonsActor extends foundry.documents.Actor {
     return derived_power_ranks
   }
 
+  // Find out the highest ranked trait and then calculate base resolve it with it.
+  deriveBaseResolve()
+  {
+    const traitCap = (this.system.traitCapOverride) ? this.system.traitCap : game.settings.get("prowlers-and-paragons", "defaultTraitCap");
+
+    let maxTrait = 0;
+    // Check abilities
+    for(const trait in this.system.abilities)
+    {
+      maxTrait = Math.max(maxTrait, this.system.abilities[trait].value);
+    }
+
+    // Check talents
+    for(const trait in this.system.talents)
+    {
+      maxTrait = Math.max(maxTrait, this.system.talents[trait].value);
+    }
+
+    const derived_power_ranks = this.derivePowerRanks();
+    // Check powers
+    this.items.contents.filter(i => i.type === 'power').forEach(power => {
+      maxTrait = Math.max(maxTrait, derived_power_ranks[power.id]);
+    });
+
+    return (traitCap > maxTrait) ? (traitCap - maxTrait) * 2 : 0;
+  }
+
   /**
    * Calculate the total spent hero points for a character.
    *
@@ -226,6 +253,8 @@ export class ProwlersParagonsActor extends foundry.documents.Actor {
 
     actorData.conditions = this.effects.filter(e => e.isCondition()).map(e => e);
     actorData.conditionsAffectingRoll = actorData.conditions.filter(c => c.changes.some(change => change.key === 'rollModifier'));
+    actorData.derivedResolve = this.deriveBaseResolve() + actorData.system.resolveFromOtherSources;
+    console.log(actorData.derivedResolve);
     actorData.derived_power_ranks = this.derivePowerRanks();
     actorData.spentHeroPoints = this.calculateSpentPoints();
     const flags = actorData.flags.prowlersandparagons || {};

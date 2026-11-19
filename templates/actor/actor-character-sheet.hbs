@@ -38,7 +38,7 @@
         </div>
 
         <div class="resource flex-group-center">
-          <label for="system.resolve.value" class="resource-label">{{localize "PROWLERS_AND_PARAGONS.DerivedCharacteristics.Resolve.Label"}}</label>
+          <label for="system.resolve.value" class="resource-label">{{localize "PROWLERS_AND_PARAGONS.DerivedCharacteristics.Resolve.Label"}} <small>({{localize "PROWLERS_AND_PARAGONS.DerivedCharacteristics.TraitCap"}} : {{actualTraitCap}})</small></label>
           <div class="resource-content flexrow flex-center flex-between">
 
           <div>
@@ -48,7 +48,11 @@
 
           <span style="vertical-align: -webkit-baseline-middle;"><i style="vertical-align: inherit;" class="fas fa-lg fa-slash-forward"></i></span>
           <div>
+          {{#if system.startingResolveOverride}}
           <input type="text" name="system.resolve.starting" value="{{system.resolve.starting}}" data-dtype="Number"/>
+          {{else}}
+          <input type="text" name="derivedResolve" value="{{derivedResolve}}" data-dtype="Number" readonly="readonly"/>
+          {{/if}}
           <label>{{localize "PROWLERS_AND_PARAGONS.DerivedCharacteristics.Resolve.Starting"}}</label>
           </div>
 
