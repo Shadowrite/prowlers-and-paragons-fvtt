@@ -498,6 +498,43 @@ export class ProwlersParagonsActorSheet extends foundry.appv1.sheets.ActorSheet 
     }
   }
 
+  /*
+   * Handle Items being dragged onto the sheet
+   */
+  async _onDropItem(event, data)
+  {
+    if(data.type != "Item")
+    {
+      return false;
+    }
+    let item = await foundry.utils.fromUuid(data.uuid);
+    // Yes, this is da wae brother
+    switch(item.type.concat(' on ', this.actor.type))
+    {
+      case 'condition on character':
+      case 'condition on minion':
+        for(const effect of item.effects)
+        {
+          ActiveEffect.create(effect, { parent : this.actor });
+        }
+        return false;
+      case 'armor on character':
+      case 'armor on minion':
+      case 'feature on hq':
+      case 'feature on vehicle':
+      case 'flaw on character':
+      case 'perk on character':
+      case 'power on character':
+      case 'weapon on character':
+      case 'weapon on minion':
+        return Item.create(item, { parent : this.actor });
+      default:
+        ui.notifications.warn(`Rejected item of type \"${item.type}\": Actor type \"${this.actor.type}\" has no use for it`);
+        return false;
+    }
+    return false; // Doesn't hurt to have it
+  }
+
   /**
    * Handle creating a new Owned Item for the actor using initial data defined in the HTML dataset
    * @param {Event} event   The originating click event

@@ -153,6 +153,14 @@ export class ProwlersParagonsItemSheet extends foundry.appv1.sheets.ItemSheet {
     const dropdata = this.getDataFromDropEvent(event)
     const draggedItem = await this.getItemDataFromDropData(dropdata)
 
+    if(this.item.type == 'condition' && (draggedItem.type == 'condition' || draggedItem.type == 'power'))
+    {
+      for(const effect of draggedItem.effects)
+      {
+        ActiveEffect.create(effect, { parent : this.item });
+      }
+    }
+
     if (this.item.type === 'power' && draggedItem.type === 'procon') { // add effect mirroring the dropped procon
       this.item.createEmbeddedDocuments('ActiveEffect', [
         {
