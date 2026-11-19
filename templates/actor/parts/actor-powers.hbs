@@ -27,7 +27,7 @@
               /></a>
           </div>
           <h4>
-              <input type="text" name="§items.{{item._id}}.name" value="{{item.name}}" data-dtype="String"/>
+              <input type="text" name="§items.{{item._id}}.name" value="{{item.name}}" data-dtype="String" data-disabledrag="true"/>
           </h4>
         </div>
         <div class='item-formula flexrow'>
@@ -37,7 +37,7 @@
           {{#if (isDefaultPower item)}}
             -
           {{else}}
-            <input type="text" name="§items.{{item._id}}.system.rank" value="{{item.system.rank}}" data-dtype="Number"/>
+            <input type="text" name="§items.{{item._id}}.system.rank" value="{{item.system.rank}}" data-dtype="Number" class="dragdisable" data-disabledrag="true"/>
           {{/if}}
         </div>
         <div class='item-formula item-prop no-left-border'>{{ifThen (isDefaultPower item) '-' (getDerivedPowerRank item._id)}}</div>

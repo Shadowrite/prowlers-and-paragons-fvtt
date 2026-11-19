@@ -345,6 +345,36 @@ export class ProwlersParagonsActorSheet extends foundry.appv1.sheets.ActorSheet 
       getActorName: (html) => html.find('input[name="name"]').val() || 'A hero',
     });
 
+    html.on('mouseenter', 'input[data-disabledrag="true"]', async (ev) => {
+      const input = $(ev.currentTarget);
+      const draggable_parents = input.parents("[draggable]");
+      if(draggable_parents.length > 0)
+      {
+        const closest_draggable_parent = input.parents("[draggable]")[0];
+        // If you want an element to not be draggable for some other reason and want to disable it being reenabled by the mouseleave event, just set the data-dragchange attribute to false
+        if(closest_draggable_parent.getAttribute("data-dragchange") == "false")
+        {
+          return;
+        }
+        closest_draggable_parent.setAttribute("draggable", "false");
+      }
+    });
+
+    html.on('mouseleave', 'input[data-disabledrag="true"]', async (ev) => {
+      const input = $(ev.currentTarget);
+      const draggable_parents = input.parents("[draggable]");
+      if(draggable_parents.length > 0)
+      {
+        const closest_draggable_parent = input.parents("[draggable]")[0];
+        // If you want an element to not be draggable for some other reason and want to disable it being reenabled by the mouseleave event, just set the data-dragchange attribute to false
+        if(closest_draggable_parent.getAttribute("data-dragchange") == "false")
+        {
+          return;
+        }
+        closest_draggable_parent.setAttribute("draggable", "true");
+      }
+    });
+
     // Handle editing item values in actor sheet
     html.on('change', 'input[name^="§items."]', async (ev) => {
       const input = $(ev.currentTarget);
