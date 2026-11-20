@@ -1,10 +1,14 @@
 {
   "id": "prowlers-and-paragons",
   "title": "Prowlers and Paragons",
-  "description": "An unofficial system for Prowlers and Paragons",
+  "description": "An unofficial system for Prowlers and Paragons. Compendia for P&P UE(Powers/Pros/Cons/Perks/Flaws) are not provided.",
   "authors": [
     {
-      "name": "Clay Sheppard"
+      "name": "Clay Sheppard",
+      "url": "https://github.com/csheepy/"
+    },
+    {
+      "name": "Anonymous"
     }
   ],
   "url": "https://github.com/shadowrite/prowlers-and-paragons-fvtt",
@@ -19,7 +23,7 @@
       "thumbnail": "systems/prowlers-and-paragons/assets/anvil-impact.png"
     }
   ],
-  "version": "F.2.1.0",
+  "version": "F.2.1.0.a",
   "compatibility": {
     "minimum": 13,
     "verified": "14.368"
@@ -46,7 +50,7 @@
   "packFolders": [],
   "socket": true,
   "manifest": "https://github.com/shadowrite/prowlers-and-paragons-fvtt/releases/latest/download/system.json",
-  "download": "https://github.com/shadowrite/prowlers-and-paragons-fvtt/releases/download/F.2.1.0/prowlers-and-paragons-fvtt.zip",
+  "download": "https://github.com/shadowrite/prowlers-and-paragons-fvtt/releases/download/F.2.1.0.a/prowlers-and-paragons-fvtt.zip",
   "background": "systems/prowlers-and-paragons/assets/anvil-impact.png",
   "primaryTokenAttribute": "health",
   "secondaryTokenAttribute": "resolve",

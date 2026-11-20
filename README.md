@@ -28,10 +28,14 @@ If you need to set up conditions for multiple powers, like adding a blind effect
 
 ## Thanks
 
-https://github.com/asacolips-projects/boilerplate/ this was a great starting point
++ https://github.com/asacolips-projects/boilerplate/ this was a great starting point
 
-The development community on the Foundry VTT discord
++ The development community on the Foundry VTT discord
 
-My game group for playtesting this
++ The Upstream dev, [csheepy](https://github.com/csheepy/) for making this
 
-![image](https://github.com/user-attachments/assets/cb19dd34-2aeb-49a3-ad47-e58cb83176c0)
++ His game group for playtesting this
+
++ My game group for playtesting this
+
+![image](https://github.com/user-attachments/assets/97be0ae7-1874-49d5-8bb3-3b5d11b264be)
