@@ -55,7 +55,7 @@ Hooks.once('init', function () {
     default: 125,
   })
   game.settings.register('prowlers-and-paragons', 'defaultTraitCap', {
-    name: 'Default Trait Cap of the world',
+    name: 'Default Trait Cap of the World',
     hint: 'Used to calculate starting resolve.',
     scope: 'world',
     config: true,

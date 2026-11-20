@@ -9,11 +9,9 @@
     <label class='resource-label'>Override Edge (stops edge auto-updating)</label>
     <input type='checkbox' name='system.edgeOverride' {{checked system.edgeOverride}} />
     <br>
-    <label class='resource-label'>Hide Character Details in Rolls</label>
-    <select name='system.hideActorDetails'>
-        {{selectOptions hide_actor_details_choices selected=system.hideActorDetails}}
-    </select>
-    <br>
+
+    <!----------------------------------------------->
+    <hr>
     <label class='resource-label'>Override Starting Resolve (stops starting resolve auto-updating)</label>
     <input type='checkbox' name='system.startingResolveOverride' {{checked system.startingResolveOverride}} />
     <br>
@@ -22,18 +20,31 @@
         <input type="text" name="system.resolveFromOtherSources" value="{{system.resolveFromOtherSources}}" data-dtype="Number" />
     {{/unless}}
     <br>
+
+    <!----------------------------------------------->
+    <hr>
+    <label class='resource-label'>Hide Character Details in Rolls</label>
+    <select name='system.hideActorDetails'>
+        {{selectOptions hide_actor_details_choices selected=system.hideActorDetails}}
+    </select>
+    <br>
+
+    <!----------------------------------------------->
+    <hr>
     <label class='resource-label'>Override Hero Points(default is {{startingHeroPoints}})</label>
     <input type='checkbox' name='system.heroPointsOverride' {{checked system.heroPointsOverride}} />
-    <br>
     {{#if system.heroPointsOverride}}
+        <br>
         <label class='resource-label'>⤷New Base Hero Points</label>
         <input type="text" name="system.baseHeroPoints" value="{{system.baseHeroPoints}}" data-dtype="Number" />
     {{/if}}
     <br>
+    <!----------------------------------------------->
+    <hr>
     <label class='resource-label'>Override Trait Cap(default is {{defaultTraitCap}})</label>
     <input type='checkbox' name='system.traitCapOverride' {{checked system.traitCapOverride}} />
-    <br>
     {{#if system.traitCapOverride}}
+        <br>
         <label class='resource-label'>⤷New Trait Cap</label>
         <input type="text" name="system.traitCap" value="{{system.traitCap}}" data-dtype="Number" />
     {{/if}}

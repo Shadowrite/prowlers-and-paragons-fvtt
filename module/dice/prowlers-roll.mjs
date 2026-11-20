@@ -56,7 +56,8 @@ export class ProwlersRoll extends Roll {
     return {
       formula: isPrivate ? "???" : this._formula,
       // flavor: isPrivate ? null : flavor ?? this.options.flavor,
-      type: isPrivate ? null : this.options.type,
+      // type: isPrivate ? null : this.options.type,
+      type: isPrivate ? null : this.options.flavor ?? this.options.type,
       user: game.user.id,
       tooltip: isPrivate ? "" : await this.getTooltip(),
       total: isPrivate ? "?" : total,

@@ -27,6 +27,21 @@ export class ProwlersParagonsActor extends foundry.documents.Actor {
     return speakerData;
   }
 
+  resolveLabel(label, actor) {
+    if(actor.type == "character")
+    {
+      switch(actor.system.hideActorDetails)
+      {
+        case 'traitsanditems':
+        case 'all':
+          label = "??????";
+          break;
+        default:
+      }
+    }
+    return label;
+  }
+
   /** @override */
   prepareData() {
     // Prepare data for the actor. Calling the super version of this executes
@@ -254,7 +269,6 @@ export class ProwlersParagonsActor extends foundry.documents.Actor {
     actorData.conditions = this.effects.filter(e => e.isCondition()).map(e => e);
     actorData.conditionsAffectingRoll = actorData.conditions.filter(c => c.changes.some(change => change.key === 'rollModifier'));
     actorData.derivedResolve = this.deriveBaseResolve() + actorData.system.resolveFromOtherSources;
-    console.log(actorData.derivedResolve);
     actorData.derived_power_ranks = this.derivePowerRanks();
     actorData.spentHeroPoints = this.calculateSpentPoints();
     const flags = actorData.flags.prowlersandparagons || {};
@@ -471,6 +485,10 @@ export class ProwlersParagonsActor extends foundry.documents.Actor {
     options.num_dice = val;
     options.rollMode = game.settings.get('core', 'rollMode');
     options.speaker = this.resolveSpeaker({ actor: this });
+    if(this.type == "character" && (pathArray[pathArray.length - 3] == "abilities" || pathArray[pathArray.length - 3] == "talents"))
+    {
+      options.flavor = this.resolveLabel(game.i18n.localize(CONFIG.PROWLERS_AND_PARAGONS[pathArray[pathArray.length - 3]][pathArray[pathArray.length - 2]]), this);
+    }
     options.trait = trait;
     if(modifier) options.initialRollModifier = modifier;
 

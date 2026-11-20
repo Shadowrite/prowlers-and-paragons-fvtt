@@ -70,7 +70,7 @@ export default class ProwlersParagonsCharacter extends ProwlersParagonsActorBase
     schema.traitCapOverride = new fields.BooleanField({initial: false});
     schema.traitCap = new fields.NumberField({ ...requiredInteger, initial: game.settings.get("prowlers-and-paragons", "defaultTraitCap"), min: 1 });
 
-    schema.hideActorDetails = new fields.StringField({ choices: ['none', 'nameonly', 'all'] }); // Hide actor details in rolls
+    schema.hideActorDetails = new fields.StringField({ choices: ['none', 'nameonly', 'traitsanditems', 'all'] }); // Hide actor details in rolls
 
     return schema;
   }

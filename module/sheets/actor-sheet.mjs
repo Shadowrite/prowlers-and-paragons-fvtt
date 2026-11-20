@@ -120,7 +120,8 @@ export class ProwlersParagonsActorSheet extends foundry.appv1.sheets.ActorSheet 
     context.hide_actor_details_choices = {
       none: 'None',
       nameonly: 'Name Only',
-      all: 'All (Same as Name Only, WIP)'
+      traitsanditems: 'Traits, Powers and Items', // Powers are traits
+      all: 'All'
     }
 
     return context;

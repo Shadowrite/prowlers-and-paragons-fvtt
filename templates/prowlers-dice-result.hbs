@@ -1,5 +1,9 @@
 <div class="dice-roll">
-    <div class="part-flavor">{{type}}</div>
+    {{#if useFlavor}}
+        <div class="part-flavor">{{flavor}}</div>
+    {{else}}
+        <div class="part-flavor">{{type}}</div>
+    {{/if}}
     <div class="dice-flavor">Difficulty: {{difficulty}}</div>
 
     <div class="dice-result">

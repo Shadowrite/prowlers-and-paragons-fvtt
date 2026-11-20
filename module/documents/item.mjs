@@ -57,7 +57,7 @@ export class ProwlersParagonsItem extends Item {
 
   async rollPower({speaker, rollMode, label, options}) {
     const powerOptions = {
-      flavor: label,
+      flavor: this.resolveLabel(label + `${(this.system.shortDescription != "" && this.system.shortDescription != this.name) ? ` [${this.system.shortDescription}]` : ""}`, this.actor),
       speaker,
       rollMode,
       type: this.name,
@@ -73,7 +73,7 @@ export class ProwlersParagonsItem extends Item {
     const maVal = martialArts ? this.actor.derived_power_ranks[martialArts.id] ?? 0 : 0;
 
     const weaponOptions = {
-      flavor: label,
+      flavor: this.resolveLabel(label, this.actor),
       speaker,
       rollMode,
       type: this.name,
@@ -90,7 +90,7 @@ export class ProwlersParagonsItem extends Item {
     const armVal = armor ? this.actor.derived_power_ranks[armor.id] ?? 0 : 0;
 
     const armorOptions = {
-      flavor: label,
+      flavor: this.resolveLabel(label, this.actor),
       speaker,
       rollMode,
       type: this.name,
@@ -117,6 +117,21 @@ export class ProwlersParagonsItem extends Item {
       }
     }
     return speakerData;
+  }
+
+  resolveLabel(label, actor) {
+    if(actor.type == "character")
+    {
+      switch(actor.system.hideActorDetails)
+      {
+        case 'traitsanditems':
+        case 'all':
+          label = "??????";
+          break;
+        default:
+      }
+    }
+    return label;
   }
 
   /**
